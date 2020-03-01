@@ -53,19 +53,20 @@ for file_name, row in xvector_rec.iterrows():
     # print(angle_mat)
     angle_mat.rename(columns={0:'angle'},inplace=True)
     angle_mat.reset_index(inplace=True)
-    if len(angle_mat[angle_mat.angle < 40])>0:
-        result=angle_mat[angle_mat.angle < 40][0].value_counts()
-    elif len(angle_mat[angle_mat.angle < 45])>0:
-        result = angle_mat[angle_mat.angle < 45][0].value_counts()
-    elif len(angle_mat[angle_mat.angle < 50])>0:
-        result = angle_mat[angle_mat.angle < 50][0].value_counts()
-    else:
-        result = angle_mat[angle_mat.angle < 70][0].value_counts()
-    #print(file_name,result.index[0])
-    #print(file_name,result)
+#     if len(angle_mat[angle_mat.angle < 40])>0:
+#         result=angle_mat[angle_mat.angle < 40][0].value_counts()
+#     elif len(angle_mat[angle_mat.angle < 45])>0:
+#         result = angle_mat[angle_mat.angle < 45][0].value_counts()
+#     elif len(angle_mat[angle_mat.angle < 50])>0:
+#         result = angle_mat[angle_mat.angle < 50][0].value_counts()
+#     else:
+#         result = angle_mat[angle_mat.angle < 70][0].value_counts()
+    # 取排最前的结果
+    result = angle_mat.ix[0,0]
 
     keys.append(file_name)
-    values.append(result.index[0])
+    #values.append(result.index[0])
+    values.append(result)
     #break
 result_df=pd.DataFrame()
 result_df['keys']=keys
